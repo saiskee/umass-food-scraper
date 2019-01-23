@@ -1,0 +1,36 @@
+<html>
+    <head>
+        <script>
+            const sleep = (milliseconds) => {
+  return new Promise(resolve => setTimeout(resolve, milliseconds))
+}
+            function scrape(food){
+                                //#1        #2            #3        #4
+                dininghalls = ["Worcester","Franklin","Hampshire","Berkshire"]
+                
+                for (let i = 0; i < 4; i++){
+                    for (let j = 0; j < 14; j++){
+                        let date = new Date(new Date().setDate(new Date().getDate() + j));
+                        let xhr = new XMLHttpRequest();
+                        let url = 'http://umassdining.com/foodpro-menu-ajax?tid='+(i+1)+'&date='+(date.getMonth()+1)+'%2F'+date.getDate()+'%2F2019'
+                        xhr.open("POST", url, true);
+                        xhr.onload = function(response){
+                            if (response.target.response.indexOf(food) > 0){
+                                console.log(dininghalls[i] + " has " + food + " on " + ((date).getMonth()+1) + "/" + date.getDate()+ "/2019\n" + url) ;
+                            }
+                        // console.log(response.target.response.indexOf(food));
+                        }
+                        xhr.send(null);
+                    }
+                }
+                
+                
+            }
+            scrape("Chicken Taco");
+
+        </script>
+    </head>
+    <body>
+        test
+    </body>
+</html>
