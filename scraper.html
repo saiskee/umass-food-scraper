@@ -15,8 +15,8 @@
                         let url = 'http://umassdining.com/foodpro-menu-ajax?tid='+(i+1)+'&date='+(date.getMonth()+1)+'%2F'+date.getDate()+'%2F2019'
                         xhr.open("POST", url, true);
                         xhr.onload = function(response){
-                            if (response.target.response.indexOf(food) > 0){
-                                console.log(dininghalls[i] + " has " + food + " on " + ((date).getMonth()+1) + "/" + date.getDate()+ "/2019\n" + url) ;
+                            if (response.target.response.indexOf(">"+food) > 0){
+                                document.write("<b>"+dininghalls[i] + "</b>"+ " has " + food + " on " + ((date).getMonth()+1) + "/" + date.getDate()+ "/2019\n" + url +"<br>") ;
                             }
                         // console.log(response.target.response.indexOf(food));
                         }
@@ -26,7 +26,7 @@
                 
                 
             }
-            scrape("Chicken Taco");
+            scrape("Mexican Rice");
 
         </script>
     </head>
